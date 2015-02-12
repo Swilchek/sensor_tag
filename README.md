@@ -39,6 +39,26 @@ Install bluetooth and bring up local device:
         
 And you're ready to rock. You'll find the usual block documentation below.
 
+Method to connect to sensor tag
+--------------
+
+If during a fresh restart of the Pi (or even n.io - not 100% sure at this time)
+
+You must bring the Blue Tooth adapter down and back up for proper acquisition of BT LE sensortags, use the following commands:
+
+        $ sudo hciconfig hci0 down
+        $ sudo hciconfig hci0 up
+        $ sudo hciconfig hci0 leadv 3
+        $ sudo hciconfig hci0 piscan
+
+Then proceded with the following. (If just starting/restarting a service, skip to this step):
+
+1) start service
+2) after succesful start (and within 3 seconds of eachother)
+	a) press locate button on SensorTag
+	b) visit the following URL in browser: http://192.168.100.72:8181/services/BlueTooth_SensorTag/Test1/connect 
+		(URL is RasPi dependent, BlueTooh_SensorTag refers to service with SensorTagRead Block in it, Test1 refers to SensorTagRead Block)
+
 
 Properties
 --------------
